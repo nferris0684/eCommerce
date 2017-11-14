@@ -1,0 +1,197 @@
+<!doctype HTML>
+<html>
+    <head>
+    <title>11.3.17 nicole ferris project</title>
+    <style>
+        /* CSS comments - only multi line comments */
+        img {
+            width:380px;
+            height:380px; /*standard sizing for all my images*/
+        }
+        input {
+            width:90px;/* input box size*/
+            color: #8F1515;/*the users input will be in this color!!*/
+            background-color: #FCC4E6;/*color of box*/
+            border-bottom-color: #FCC4E6;
+            border-block-end-color: #FCC4E6;
+        }
+        div1{ /*individual divs allows me to style each one differently*/
+            background-color: #FCC4E6; /*background color of div*/
+            max-width: 450px;
+            max-height: 550px;
+            float: left;
+    
+            
+        }
+        div2{
+            background-color: #EBD4F7;/*gradient effect with div colors*/
+            max-width: 450px;
+            max-height: 550px;
+            float: left;
+        }
+        div3{
+            background-color: #E7C7F9;
+            max-width: 450px;
+            max-height:550px;
+            float: left;
+        }
+        div4{
+            background-color: #E4BEF9;
+            max-width: 450px;
+            max-height: 550px;
+            float: left;
+        }
+        body{
+            background-image: url("background.jpg");
+        }    
+        body {
+            font-size: 113%; /*font size adjusted to draw more attention to the text*/
+        }
+        img{
+            opacity: 0.85;
+        /* lowers opacity, or how transparent an image is to look less harsh*/
+        }         
+
+        div1 {
+            padding-top: 10px;
+            padding-right: 10px; /* padding allows me to adjust the sizes of each side*/
+            padding-bottom: 10px;
+            padding-left: 10px;
+        } 
+        div2 {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+        }
+        div3 {
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+        } 
+        div4 {
+            padding-top: 10px;   /* having four divs allows me to color each differently and style*/
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+        }  
+        p{ 
+            margin-top: 10px;
+            margin-bottom: 20px;
+            margin-right: 10px;
+            margin-left: 15px;/*alligns all text*/
+        }  
+        p {
+            font-family: "Times New Roman", Times, serif; /*font*/
+        }
+        div1{
+            font-weight: bold;
+        }
+        button{
+            color: #682B9B;/*why not give the text in the button a color*/
+            background-color: #E3AAF5;
+        }
+        
+    </style>
+    <script>
+        /*how do we create an eCommerce project where we sell three items*/
+        var pr1 = 34.99, Wsp1 = 29;
+        var pr2 = 5.99,  Wsp2 = 4;//assigning variables
+        var pr3 = 6.99,  Wsp3 = 5;
+        var taxrate = 8.75;
+        function initprices(){
+            document.getElementById("span1").innerHTML = "Price: $"+pr1;
+            document.getElementById("span2").innerHTML = "Price: $"+pr2;
+            document.getElementById("span3").innerHTML = "Price: $"+pr3;
+        }
+        function order(){
+            var q1 = parseInt(document.getElementById("qnty1").value);
+            var q2 = parseInt(document.getElementById("qnty2").value);
+            var q3 = parseInt(document.getElementById("qnty3").value);
+            //HERE STARTS CALCULATIONS
+            var finalq = q1+q2+q3;
+            var CustSubTotal = (q1*pr1) + (q2*pr2) + (q3*pr3);
+            var CompSubTotal = (q1*Wsp1) + (q2*Wsp2) + (q3*Wsp3);
+            var prof = CustSubTotal - CompSubTotal;
+            var tax = CustSubTotal * (taxrate/100);
+            var shipping = 0;
+            //SHIPPING
+            if (CustSubTotal < 100){
+                shipping = 25;
+            }if (CustSubTotal == 100 && cost <= 200){
+                shipping = 10;
+            }else if (CustSubTotal > 200){
+                shipping = 0
+            }
+            var CustTotal = CustSubTotal + tax + shipping;
+            var itemsSold= q1 + q2 + q3;
+            //
+            var op = document.getElementById("output");
+            var build = "";
+            //string build to display required information
+
+            build += "<div1 id = 'CustomerInfo'>";
+            build += "<pre>";
+            build += "Customer Order Details "+"<br>";
+            build += "-------------------------------- <br>";
+            build += "Subtotal:                      $" + CustSubTotal.toFixed(2) + "<br>";
+            build += "Tax:                           $" + tax.toFixed(2) + "<br>";
+            build += "Shipping Costs:                $" + shipping.toFixed(2)+ "<br>";
+            build += "Customer Total:                $" + CustTotal.toFixed(2)+ "<br>";
+            build += "Thank You very much for your purchase!"+"<br><br>";
+            build += "</div1>";
+
+            
+            build += "<br><hr>";
+            build += "<div1 id =  'CompanyInfo'>";
+            build += "<pre>";
+            build += "Company Order Details "+"<br>";
+            build += "-------------------------------- <br>";
+            build += "Total Items Sold:               "+itemsSold + "<br>";
+            build += "Customer Subtotal:             $" + CustSubTotal.toFixed(2) + "<br>";
+            build += "Company Subtotal:              $"+ CompSubTotal.toFixed(2) + "<br>";
+            build += "Profit:                        $" + prof.toFixed(2) + "<br><br>";
+            build += "</div1>";
+
+            op.innerHTML =  build;
+
+        }
+    </script>
+    </head>
+    <body onload="initprices()">
+        <h1 style="color:#6B2859; background-color:#E9DBFC"> Nicole's Laundry Essentials!</h1>  <!-- gives my heading a color and background to stand out on -->
+        
+        <!-- iron -->
+        <div2>
+            <img src = "iron.jpg"><br>
+            <p>High Power Iron!</p>
+           <!-- description of items--> <p> This iron is the best you'll ever use.<br> Just one press and all the wrinkles vanish!<br> NOW WITH SUPER GLIDE TECHNOLOGY</p>
+            <span id = "span1"></span>
+            <input type="text" id="qnty1" placeholder="How many?">
+        </div2>
+        <!-- softener  -->
+        <div3>
+            <img src = "softner.jpg"><br>
+            <p>Super Softener!</p>
+            <p> Are your clothes feeling old and lifeless? Dry and rough? <br> JUST ONE wash with our Super Softener!<br>and your clothes will be cotton soft!</p>
+            <span id = "span2"></span>
+            <input type="text" id="qnty2" placeholder="How many?">
+        </div3>
+        <!-- detergent -->
+        <div4>
+            <img src = "tide.jpeg"><br>
+            <p>World's Strongest Detergent!</p>
+            <p> Have pesky stains? Need that white shirt bright again? <br> Try our World's Strongest Detergent (science pending) <br> Scrubbing those stains out will be a day of the past!</p>
+            <span id = "span3"></span>
+            <input type="text" id="qnty3" placeholder="How many?">
+        </div4><br><br>
+
+
+
+        <button onclick="order()"> Process My Order </button>
+        <br>
+        <div id="output"></div>
+
+    </body>
+</html>
